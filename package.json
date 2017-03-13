@@ -1,0 +1,58 @@
+{
+  "name": "tracking.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "build": "node ./build/build",
+    "watch": "node ./build/watch",
+    "dev": "node ./build/watch & karma start test/unit/karma.conf.js",
+    "cov": "open ./test/unit/coverage/lcov-report/index.html",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConnectedVentures/tracking.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConnectedVentures/tracking.js/issues"
+  },
+  "homepage": "https://github.com/ConnectedVentures/tracking.js#readme",
+  "devDependencies": {
+    "babel-plugin-istanbul": "^4.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.17.1",
+    "eslint-config-standard": "^7.0.1",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "karma": "^1.5.0",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon": "^1.0.5",
+    "karma-sinon-chai": "^1.2.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.30",
+    "karma-webpack": "^2.0.2",
+    "lodash.clonedeep": "^4.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0",
+    "webpack-merge": "^4.0.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "function-bind": "^1.1.0",
+    "webpack": "^2.2.1"
+  }
+}
