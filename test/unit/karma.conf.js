@@ -16,8 +16,8 @@ const projectRoot = path.resolve(__dirname, '../../')
 const webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
   devtool: '#inline-source-map',
-  performance: { hints: false },
-  plugins: [ new webpack.DefinePlugin({ 'API_VERSION': JSON.stringify(require(path.join(__dirname, '../../package.json')).version) }) ]
+  performance: {hints: false},
+  plugins: [new webpack.DefinePlugin({'API_VERSION': JSON.stringify(require(path.join(__dirname, '../../package.json')).version)})]
 })
 
 // No need for app entry during tests
@@ -49,21 +49,26 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: reporters,
-    files: ['./specs/**/*.js', '../../src/**/*.js'],
+    files: ['./specs/**/*.spec.js', '../../src/**/*.js'],
     preprocessors: {
-      './specs/**/*.js': ['webpack', 'sourcemap'],
+      './specs/**/*.spec.js': ['webpack', 'sourcemap'],
       '../../src/**/*.js': ['webpack', 'sourcemap'],
     },
     webpack: webpackConfig,
-    webpackMiddleware: { noInfo: true },
-    client: { 'mocha': { timeout: '5000' } },
-    specReporter: { },
+    webpackMiddleware: {noInfo: true},
+    client: {
+      'mocha': {
+        timeout: '5000'
+      },
+      captureConsole: true
+    },
+    specReporter: {},
     coverageReporter: {
       dir: './coverage',
       reporters: [
-        { type: 'lcov', subdir: '.' },
-        { type: 'text', subdir: '.', file: 'coverage.txt' },
-        { type: 'text-summary' }
+        {type: 'lcov', subdir: '.'},
+        {type: 'text', subdir: '.', file: 'coverage.txt'},
+        {type: 'text-summary'}
       ],
       check: {
         global: {

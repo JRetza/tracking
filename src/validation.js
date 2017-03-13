@@ -33,10 +33,10 @@ export function validateFields (data) {
   if (requiredCount !== requiredFields.length) {
     return new Error('Required fields are missing from data object, `data` must contain the following fields: ' + requiredFields)
   }
+  return true
 }
 
-export function validateBets(data)
-{
+export function validateBets (data) {
   // Validate bet array and stringify
   if (data.bets) {
     if (!(data.bets instanceof Array)) {
@@ -51,6 +51,9 @@ export function validateBets(data)
     }
 
     data.bets = data.bets.join(',')
+    return true
+  } else {
+    return new Error('Data does not contain bets')
   }
 }
 

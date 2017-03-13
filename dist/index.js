@@ -630,10 +630,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(40);
-
-var _keys2 = _interopRequireDefault(_keys);
-
 var _classCallCheck2 = __webpack_require__(43);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -644,13 +640,13 @@ var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _validation = __webpack_require__(38);
 
+var _requests = __webpack_require__(80);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Fresh8Tracking = function () {
-  function Fresh8Tracking(config) {
+  function Fresh8Tracking() {
     (0, _classCallCheck3.default)(this, Fresh8Tracking);
-
-    this.config = config;
   }
 
   (0, _createClass3.default)(Fresh8Tracking, [{
@@ -670,46 +666,16 @@ var Fresh8Tracking = function () {
 
       var err;
       err = (0, _validation.validateFields)(data);
-      if (err != null) {
+      if (err instanceof Error) {
         return callback(err);
       }
 
       err = (0, _validation.validateBets)(data);
-      if (err != null) {
+      if (err instanceof Error) {
         return callback(err);
       }
 
       callback(this.sendRequest(data));
-    }
-  }, {
-    key: 'sendRequest',
-    value: function sendRequest(data) {
-      var d = new Date();
-      var baseURL = 'https://heimdall.fresh8.co/track';
-      var reqURL = baseURL + '?' + 'appID=' + encodeURIComponent(data.appID) + '&vertical=' + encodeURIComponent(data.vertical) + '&timestamp=' + d.getTime();
-
-      (0, _keys2.default)(data).forEach(function (key) {
-        if (key != 'appID' && key != 'vertical') {
-          reqURL = reqURL + '&' + key + '=' + encodeURIComponent(data[key]);
-        }
-      });
-
-      var request = new XMLHttpRequest();
-      request.withCredentials = true;
-
-      request.open('GET', reqURL);
-
-      request.onload = function () {
-        if (request.status > 202 || request.status < 200) {
-          return new Error('Request to fresh8 tracking failed with status code ' + request.status);
-        }
-      };
-
-      request.onerror = function () {
-        return new Error('Request to fresh8 tracking failed');
-      };
-
-      request.send();
     }
   }]);
   return Fresh8Tracking;
@@ -759,6 +725,7 @@ function validateFields(data) {
   if (requiredCount !== requiredFields.length) {
     return new Error('Required fields are missing from data object, `data` must contain the following fields: ' + requiredFields);
   }
+  return true;
 }
 
 function validateBets(data) {
@@ -775,6 +742,9 @@ function validateBets(data) {
     }
 
     data.bets = data.bets.join(',');
+    return true;
+  } else {
+    return new Error('Data does not contain bets');
   }
 }
 
@@ -1634,6 +1604,54 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 
 module.exports = __webpack_require__(37);
 
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _keys = __webpack_require__(40);
+
+var _keys2 = _interopRequireDefault(_keys);
+
+exports.sendRequest = sendRequest;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function sendRequest(data) {
+  var d = new Date();
+  var baseURL = 'https://heimdall.fresh8.co/track';
+  var reqURL = baseURL + '?' + 'appID=' + encodeURIComponent(data.appID) + '&vertical=' + encodeURIComponent(data.vertical) + '&timestamp=' + d.getTime();
+
+  (0, _keys2.default)(data).forEach(function (key) {
+    if (key != 'appID' && key != 'vertical') {
+      reqURL = reqURL + '&' + key + '=' + encodeURIComponent(data[key]);
+    }
+  });
+
+  var request = new XMLHttpRequest();
+  request.withCredentials = true;
+
+  request.open('GET', reqURL);
+
+  request.onload = function () {
+    if (request.status > 202 || request.status < 200) {
+      return new Error('Request to fresh8 tracking failed with status code ' + request.status);
+    }
+  };
+
+  request.onerror = function () {
+    return new Error('Request to fresh8 tracking failed');
+  };
+
+  request.send();
+}
 
 /***/ })
 /******/ ]);
