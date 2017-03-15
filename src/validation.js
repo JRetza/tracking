@@ -1,5 +1,5 @@
 export function validateFields (data) {
-  var validFields = [
+  let validFields = [
     'appID',
     'vertical',
     'conversionID',
@@ -9,27 +9,23 @@ export function validateFields (data) {
     'eventType',
     'timestamp',
     'walletAmount'
-  ]
+  ];
 
-  var requiredFields = [
+  let requiredFields = [
     'appID',
     'vertical'
-  ]
+  ];
 
-  var requiredCount = 0
+  let requiredCount = 0;
 
-  for (var property in data) {
-    if (data.hasOwnProperty(property)) {
+  for (let property in data) {
       if (validFields.indexOf(property) < 0) {
         return new Error('Invalid property submitted in data object: ' + property + '\n Valid fields are as follows: ' + validFields)
       }
-
       if (requiredFields.indexOf(property) > -1) {
         requiredCount++
       }
-    }
   }
-
   if (requiredCount !== requiredFields.length) {
     return new Error('Required fields are missing from data object, `data` must contain the following fields: ' + requiredFields)
   }

@@ -1,11 +1,11 @@
 import { validateFields, validateBets } from './validation'
 import { sendRequest } from './requests'
 
-export default class Fresh8Tracking {
+class Fresh8Tracking {
 
   emitEvent (data, callback) {
     if (typeof callback !== 'function') {
-      callback = function () {
+      callback = () => {
       }
     }
 
@@ -28,7 +28,8 @@ export default class Fresh8Tracking {
       return callback(err)
     }
 
-    callback(sendRequest(data))
+    return callback(sendRequest(data))
   }
 }
 
+export { Fresh8Tracking as default }
