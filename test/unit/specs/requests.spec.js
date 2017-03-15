@@ -1,43 +1,40 @@
 import { sendRequest } from 'src/requests'
+import { mockFetchResponse } from '../lib/mock-fetch'
+
 describe('src/requests.js', () => {
-  let xhr
-  let requests
-
-  beforeEach(() => {
-    xhr = sinon.useFakeXMLHttpRequest();
-    requests = [];
-    xhr.onCreate = function (req) {
-      requests.push(req);
-    };
-  })
-
-  afterEach(() => {
-    xhr.restore();
-  })
+  let data = {
+    'appID': 1,
+    'bets': [
+      '131313_123456',
+      '121212_234567',
+    ],
+    'vertical': true
+  }
 
   describe('sendRequest', () => {
-    it('Should error on 199 status code', () => {
-      let data = {
-        'appID': 1,
-        'bets': [
-          '131313_123456',
-          '121212_234567',
-        ],
-        'vertical': true
-      }
-      let ret = sendRequest(data)
-      // TODO: respond with 199 and get error
+    let fetchStub
+    beforeEach(() => {
+      fetchStub = sinon.stub(window, 'fetch');
     })
-    it('Should error on 203 status code', () => {
-      let data = {
-        'appID': 1,
-        'bets': [
-          '131313_123456',
-          '121212_234567',
-        ],
-        'vertical': true
-      }
-      sendRequest(data)
+
+    afterEach(() => {
+      fetchStub.restore()
+    })
+
+    it('Should error on 400 status code', () => {
+      fetchStub.returns(Promise.resolve(mockFetchResponse({}, 400)));
+      return sendRequest(data).then((res) => {
+      }).catch(err => {
+        expect(err).to.equal('Request to fresh8 tracking failed with status code: 400')
+      })
+    })
+
+    it('response status should be 200', () => {
+      fetchStub.returns(Promise.resolve(mockFetchResponse({}, 200)));
+
+      return sendRequest(data).then((res) => {
+        expect(res.status).to.equal(200)
+      })
     })
   })
 });
