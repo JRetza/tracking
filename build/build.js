@@ -1,5 +1,10 @@
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.conf');
+const webpackConfigs = require('./webpack.conf');
 const handleOutPut = require('./util');
 
-webpack(webpackConfig, handleOutPut);
+webpack([
+  webpackConfigs.baseConfig,
+  webpackConfigs.minifiedConfig,
+  webpackConfigs.browserConfig,
+  webpackConfigs.minifiedBrowserConfig
+]).run(handleOutPut);

@@ -6,11 +6,12 @@ const webpack = require('webpack')
 //   https://github.com/webpack/karma-webpack
 
 // Define process title
-process.title = 'Betslip: Karma'
+process.title = 'Tracking: Karma'
 
 const path = require('path')
 const merge = require('webpack-merge')
-const baseConfig = require('../../build/webpack.conf');
+const webpackConfigs = require('../../build/webpack.conf');
+const baseConfig = webpackConfigs.baseConfig;
 const projectRoot = path.resolve(__dirname, '../../')
 
 const webpackConfig = merge(baseConfig, {

@@ -19,37 +19,36 @@ export function validateFields (data) {
   let requiredCount = 0;
 
   for (let property in data) {
-      if (validFields.indexOf(property) < 0) {
-        return new Error('Invalid property submitted in data object: ' + property + '\n Valid fields are as follows: ' + validFields)
-      }
-      if (requiredFields.indexOf(property) > -1) {
-        requiredCount++
-      }
+    if (validFields.indexOf(property) < 0) {
+      return new Error('Invalid property submitted in data object: ' + property + '\n Valid fields are as follows: ' + validFields);
+    }
+    if (requiredFields.indexOf(property) > -1) {
+      requiredCount++;
+    }
   }
   if (requiredCount !== requiredFields.length) {
-    return new Error('Required fields are missing from data object, `data` must contain the following fields: ' + requiredFields)
+    return new Error('Required fields are missing from data object, `data` must contain the following fields: ' + requiredFields);
   }
-  return true
+  return true;
 }
 
 export function validateBets (data) {
   // Validate bet array and stringify
   if (data.bets) {
     if (!(data.bets instanceof Array)) {
-      return new Error('Expected data.bets to be an Array, instead found ' + (typeof data.bets))
+      return new Error('Expected data.bets to be an Array, instead found ' + (typeof data.bets));
     }
 
-    for (var i = 0; i < data.bets.length; i++) {
-      var exploded = data.bets[i].split('_')
+    for (let i = 0; i < data.bets.length; i++) {
+      let exploded = data.bets[i].split('_');
       if (exploded.length !== 2) {
-        return new Error('Invalid bet data supplied to bets, expected [betid]_[optionid], found ' + data.bets[i])
+        return new Error('Invalid bet data supplied to bets, expected [betid]_[optionid], found ' + data.bets[i]);
       }
     }
 
-    data.bets = data.bets.join(',')
-    return true
+    data.bets = data.bets.join(',');
+    return true;
   } else {
-    return new Error('Data does not contain bets')
+    return new Error('Data does not contain bets');
   }
 }
-
