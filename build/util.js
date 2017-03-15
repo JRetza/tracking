@@ -23,6 +23,6 @@ module.exports = function (error, stats) {
 };
 
 function handleErrors (array) {
-  var errorString = array[0];
+  let errorString = array[0];
   return new Error(errorString);
 }

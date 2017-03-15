@@ -9,7 +9,7 @@ export function sendRequest (data) {
 
   // Only apply values set in keys
   Object.keys(data).forEach(function (key) {
-    if (key != 'appID' && key != 'vertical') {
+    if (key !== 'appID' && key !== 'vertical') {
       reqURL = `${reqURL}&${key}=${encodeURIComponent(data[key])}`;
     }
   });

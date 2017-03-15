@@ -4195,7 +4195,7 @@ function sendRequest(data) {
   var reqURL = 'https://heimdall.fresh8.co/track?\n  appID=' + encodeURIComponent(data.appID) + '&\n  vertical=' + encodeURIComponent(data.vertical) + '&\n  timestamp=' + new Date().getTime();
 
   (0, _keys2.default)(data).forEach(function (key) {
-    if (key != 'appID' && key != 'vertical') {
+    if (key !== 'appID' && key !== 'vertical') {
       reqURL = reqURL + '&' + key + '=' + encodeURIComponent(data[key]);
     }
   });
@@ -4227,7 +4227,7 @@ function checkStatusCode(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  return _promise2.default.reject('Request to fresh8 tracking failed with status code: ' + response.status);
+  return _promise2.default.reject(new Error('Request to fresh8 tracking failed with status code: ' + response.status));
 }
 
 /***/ }),

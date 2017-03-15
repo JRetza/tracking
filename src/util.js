@@ -8,5 +8,5 @@ export function checkStatusCode (response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  return Promise.reject('Request to fresh8 tracking failed with status code: ' + response.status);
+  return Promise.reject(new Error('Request to fresh8 tracking failed with status code: ' + response.status));
 }
