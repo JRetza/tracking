@@ -6,13 +6,13 @@ const webpack = require('webpack')
 //   https://github.com/webpack/karma-webpack
 
 // Define process title
-process.title = 'Tracking: Karma'
+process.title = 'Tracking: Karma';
 
-const path = require('path')
-const merge = require('webpack-merge')
+const path = require('path');
+const merge = require('webpack-merge');
 const webpackConfigs = require('../../build/webpack.conf');
-const baseConfig = webpackConfigs.baseConfig;
-const projectRoot = path.resolve(__dirname, '../../')
+const baseConfig = webpackConfigs.browserConfig;
+const projectRoot = path.resolve(__dirname, '../../');
 
 const webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
