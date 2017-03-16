@@ -1,11 +1,15 @@
 import 'whatwg-fetch';
 import { checkStatusCode } from './util';
-
+/**
+ * makes the request to the server using fetch
+ * @param data to be sent
+ * @returns {*|Promise.<TResult>}
+ */
 export function sendRequest (data) {
-  let reqURL = `https://heimdall.fresh8.co/track?
-  appID=${encodeURIComponent(data.appID)}&
-  vertical=${encodeURIComponent(data.vertical)}&
-  timestamp=${new Date().getTime()}`;
+  let reqURL = `${URL}/track
+?appID=${encodeURIComponent(data.appID)}
+  &vertical=${encodeURIComponent(data.vertical)}
+  &timestamp=${new Date().getTime()}`;
 
   // Only apply values set in keys
   Object.keys(data).forEach(function (key) {

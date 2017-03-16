@@ -4192,7 +4192,7 @@ var _util = __webpack_require__(163);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function sendRequest(data) {
-  var reqURL = 'https://heimdall.fresh8.co/track?\n  appID=' + encodeURIComponent(data.appID) + '&\n  vertical=' + encodeURIComponent(data.vertical) + '&\n  timestamp=' + new Date().getTime();
+  var reqURL = "http://heimdall.fresh8.co" + '/track\n  ?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
 
   (0, _keys2.default)(data).forEach(function (key) {
     if (key !== 'appID' && key !== 'vertical') {
@@ -4270,7 +4270,6 @@ function validateFields(data) {
   }
   return true;
 }
-
 function validateBets(data) {
   if (data.bets) {
     if (!(data.bets instanceof Array)) {

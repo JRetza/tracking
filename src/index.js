@@ -1,7 +1,16 @@
 import { validateFields, validateBets } from './validation';
 import { sendRequest } from './requests';
-
+/**
+ * Fresh8Tracking class holds 1 function which validates and sends data
+ */
 class Fresh8Tracking {
+  /**
+   * runs data through validation and and returns then runs sendRequest in a callback to send the data
+   * @param data data to be validated and sent
+   * @param callback
+   * @returns {} returns the callback containing an error if data does
+   * not validate or sendRequest if everything does validate
+   */
   emitEvent (data, callback) {
     if (typeof callback !== 'function') {
       callback = () => {

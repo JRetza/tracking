@@ -1,3 +1,10 @@
+/**
+ * validates data fields to only be the fields in the validFields array
+ * validates data fields to have to include the fields in requiredFields array
+ * returns an error if validation doesn't pass, else returns true
+ * @param data
+ * @returns {Error|boolean} returns an Error if fields do not validate and true if they do
+ */
 export function validateFields (data) {
   let validFields = [
     'appID',
@@ -31,7 +38,12 @@ export function validateFields (data) {
   }
   return true;
 }
-
+/**
+ * validates the bets property of the attribute to be an array and be formatted correctly
+ * returns an error if validation doesn't pass, else returns true
+ * @param data
+ * @returns {Error|boolean} returns an Error if bets do not validate and true if they do
+ */
 export function validateBets (data) {
   // Validate bet array and stringify
   if (data.bets) {

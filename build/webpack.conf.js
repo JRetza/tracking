@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-
 const baseConfig = function () {
   return {
     entry: ['babel-polyfill', './src/index.js'],
@@ -30,7 +29,11 @@ const baseConfig = function () {
       extensions: ['.js'],
       alias: {'src': path.resolve(__dirname, '../src')}
     },
-    plugins: [],
+    plugins: [
+      new webpack.DefinePlugin({
+        URL: JSON.stringify(process.argv.slice(2)[0]) || JSON.stringify('http://heimdall.fresh8.co')
+      })
+    ],
     devtool: 'source-map',
     watch: false
   };
