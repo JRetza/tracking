@@ -1,4 +1,4 @@
-import Fresh8Tracking from 'src/index';
+import { Fresh8Tracking } from 'src/index';
 import * as validation from 'src/validation';
 import * as requests from 'src/requests';
 

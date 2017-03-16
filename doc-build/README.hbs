@@ -1,0 +1,66 @@
+# F8 Tracking
+
+## Getting Started
+
+
+## Using Bundled ES5
+
+The project is pre bundled and transpiled using webpack and babel, into the dist folder where there is an uncompressed and uglified version of the Fresh8Tracking.js library.
+
+Its formatted as a commonjs2 module. Use with your own bundler like so in es5:
+
+```js
+var Fresh8Tracking = require('Fresh8Tracking').Fresh8Tracking;
+```
+
+## Using Browser Version
+
+The project is also pre bundled as a browser.js file to be used in the browser where the Fresh8Tracking class has been bound to the window. with this script you should be able to access window.Fresh8Tracking
+
+## Using ES6
+
+you will need to ensure your babel configuration includes:
+
+```
+{
+"presets": ["es2015", "stage-2"],
+"plugins": ["transform-es2015-function-name"]
+}
+```
+Assuming you have a bundler and transpiler configured correctly.
+
+```es6
+import { Fresh8Tracking } from 'Fresh8Tracking/src';
+```
+
+will load the Fresh8Tracking class
+
+## Using Fresh8Tracking example
+```es6
+import Fresh8Tracking from 'src/index';
+const fresh8Tracking = new Fresh8Tracking;
+
+fresh8Tracking.emitEvent(data, () => {})
+```
+
+## Contributing and Developing
+
+Ensure node 6 LTS is installed. Then.
+
+```
+npm install
+```
+
+### Testing
+- Running unit tests, and check code coverage: `npm test`
+- Open the code coverage report: `npm run cov`
+
+### Scripts
+- `unit: Run the unit tests once
+- `build`: Compiles the code to ES5 in the dist folder also adds a browser version, and builds readme.md
+- `docs`: Rebuild this README.md
+- `dev`: Compiles the code to ES5, and runs unit tests whilst watching for changes
+
+# API
+
+{{>main}}

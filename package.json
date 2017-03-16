@@ -1,15 +1,14 @@
 {
-  "name": "tracking.js",
+  "name": "Fresh8Tracking",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "build": "rimraf dist & node ./build/build",
-    "watch": "node ./build/watch",
+    "build": "rimraf dist && npm run docs && node ./build/build",
     "dev": "node ./build/watch & karma start test/unit/karma.conf.js",
     "cov": "open ./test/unit/coverage/lcov-report/index.html",
-    "prepublish": "npm run build"
+    "docs": "jsdoc2md -t doc-build/README.hbs --files ./src/*.js > README.md"
   },
   "repository": {
     "type": "git",
@@ -27,15 +26,15 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
     "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
     "eslint": "^3.17.1",
     "eslint-config-standard": "^7.0.1",
     "eslint-friendly-formatter": "^2.0.7",
+    "eslint-loader": "^1.6.3",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
+    "jsdoc-to-markdown": "^3.0.0",
     "karma": "^1.5.0",
     "karma-chai": "^0.1.0",
-    "karma-chai-as-promised": "^0.1.2",
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.2",
@@ -56,6 +55,7 @@
     "babel-loader": "^6.4.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
+    "es6-promise": "^4.1.0",
     "function-bind": "^1.1.0",
     "webpack": "^2.2.1",
     "whatwg-fetch": "^2.0.3"

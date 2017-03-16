@@ -1,17 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
+const projectRoot = path.resolve(__dirname, '../');
 const baseConfig = function () {
   return {
     entry: ['babel-polyfill', './src/index.js'],
     output: {
       path: path.resolve(__dirname, '../dist'),
+      publicPath: './',
       filename: 'index.js',
+      libraryTarget: 'commonjs2',
+      library: 'Fresh8Tracking'
     },
     module: {
       rules: [
         {
           test: /\.js$/,
           loader: 'babel-loader',
+          include: projectRoot,
           exclude: /node_modules/
         },
         {
@@ -32,6 +37,9 @@ const baseConfig = function () {
     plugins: [
       new webpack.DefinePlugin({
         URL: JSON.stringify(process.argv.slice(2)[0]) || JSON.stringify('http://heimdall.fresh8.co')
+      }),
+      new webpack.ProvidePlugin({
+        Promise: 'es6-promise'
       })
     ],
     devtool: 'source-map',
