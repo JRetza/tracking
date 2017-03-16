@@ -33,23 +33,23 @@ const baseConfig = function () {
     plugins: [],
     devtool: 'source-map',
     watch: false
-  }
-}
+  };
+};
 
 const minifiedConfig = baseConfig();
 minifiedConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({comments: false, sourceMap: true}));
 minifiedConfig.plugins.push(new webpack.optimize.DedupePlugin());
-minifiedConfig.output.filename = 'index.min.js'
+minifiedConfig.output.filename = 'index.min.js';
 
 const browserConfig = baseConfig();
-browserConfig.entry = ['babel-polyfill', './src/browser.js']
-browserConfig.output.filename = 'browser.js'
+browserConfig.entry = ['babel-polyfill', './src/browser.js'];
+browserConfig.output.filename = 'browser.js';
 
 const minifiedBrowserConfig = baseConfig();
-minifiedBrowserConfig.entry = ['babel-polyfill', './src/browser.js']
+minifiedBrowserConfig.entry = ['babel-polyfill', './src/browser.js'];
 minifiedBrowserConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({comments: false, sourceMap: true}));
 minifiedBrowserConfig.plugins.push(new webpack.optimize.DedupePlugin());
-minifiedBrowserConfig.output.filename = 'browser.min.js'
+minifiedBrowserConfig.output.filename = 'browser.min.js';
 
 module.exports = {
   baseConfig: baseConfig(),
