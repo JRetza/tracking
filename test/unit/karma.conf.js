@@ -11,7 +11,7 @@ process.title = 'Tracking: Karma';
 const path = require('path');
 const merge = require('webpack-merge');
 const webpackConfigs = require('../../build/webpack.conf');
-const baseConfig = webpackConfigs.browserConfig;
+const baseConfig = webpackConfigs.baseConfig;
 const projectRoot = path.resolve(__dirname, '../../');
 
 const webpackConfig = merge(baseConfig, {
@@ -32,15 +32,14 @@ webpackConfig.module.rules.unshift({
   exclude: /test\/unit|node_modules/
 })
 
-webpackConfig.module.rules.some((loader, i) => {
+webpackConfig.module.rules.some((loader) => {
   if (loader.loader === 'babel-loader') {
-    loader.include = /test\/unit/
-    return true
+    loader.include = /test\/unit/;
+    return true;
   }
 })
 
-var reporters = [process.env.KARMA_REPORTER || 'spec', 'coverage']
-
+var reporters = [process.env.KARMA_REPORTER || 'spec', 'coverage'];
 module.exports = function (config) {
   config.set({
     // to run in additional browsers:
@@ -50,7 +49,7 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: reporters,
-    files: ['./specs/**/*.spec.js', '../../src/**/*.js'],
+    files: ['./specs/**/*.spec.js', '../../src/**/!(browser).js'],
     preprocessors: {
       './specs/**/*.spec.js': ['webpack', 'sourcemap'],
       '../../src/**/*.js': ['webpack', 'sourcemap'],
