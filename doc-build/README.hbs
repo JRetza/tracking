@@ -37,7 +37,7 @@ will load the Fresh8Tracking class
 
 ## Using Fresh8Tracking example
 ```es6
-import Fresh8Tracking from 'src/index';
+import Fresh8Tracking from 'Fresh8Tracking';
 const fresh8Tracking = new Fresh8Tracking;
 
 fresh8Tracking.emitEvent(data, () => {})
@@ -57,7 +57,7 @@ npm install
 
 ### Scripts
 - `unit: Run the unit tests once
-- `build`: Compiles the code to ES5 in the dist folder also adds a browser version, and builds readme.md
+- `build -- url`: Compiles the code to ES5 in the dist folder also adds a browser version, and builds readme.md. Can pass this a URL for the built version to use a different url
 - `docs`: Rebuild this README.md
 - `dev`: Compiles the code to ES5, and runs unit tests whilst watching for changes
 
