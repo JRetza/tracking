@@ -15,8 +15,8 @@
     "type": "git",
     "url": "git+https://github.com/ConnectedVentures/tracking.js.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Fresh8",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ConnectedVentures/tracking.js/issues"
   },
