@@ -4804,7 +4804,7 @@ __webpack_require__(305);
 var _util = __webpack_require__(121);
 
 function sendRequest(data) {
-  var reqURL = "http://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
+  var reqURL = "https://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
 
   Object.keys(data).forEach(function (key) {
     if (key !== 'appID' && key !== 'vertical') {
