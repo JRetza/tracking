@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Fresh8Tracking"] = factory();
+	else
+		root["Fresh8Tracking"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -4787,7 +4796,7 @@ __webpack_require__(304);
 var _util = __webpack_require__(120);
 
 function sendRequest(data) {
-  var reqURL = "https://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
+  var reqURL = "http://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
 
   Object.keys(data).forEach(function (key) {
     if (key !== 'appID' && key !== 'vertical') {
@@ -10183,4 +10192,5 @@ module.exports = __webpack_require__(116);
 
 /***/ })
 /******/ ]);
+});
 //# sourceMappingURL=index.js.map
