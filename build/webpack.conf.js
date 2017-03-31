@@ -36,7 +36,7 @@ const baseConfig = function () {
     },
     plugins: [
       new webpack.DefinePlugin({
-        URL: JSON.stringify(process.argv.slice(2)[0]) || JSON.stringify('http://heimdall.fresh8.co')
+        URL: JSON.stringify(process.argv.slice(2)[0]) || JSON.stringify('https://heimdall.fresh8.co')
       }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise'

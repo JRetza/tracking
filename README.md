@@ -56,8 +56,9 @@ npm install
 - Open the code coverage report: `npm run cov`
 
 ### Scripts
+Use these scripts using `npm run ...`:
 - `unit`: Run the unit tests once
-- `build -- url`: Compiles the code to ES5 in the dist folder also adds a browser version, and builds readme.md. Can pass this a URL for the built version to use a different url
+- `build -- url`: Compiles the code to ES5 in the dist folder also adds a browser version, and builds readme.md. Can pass this a `url` for the built version to use a different URL. `url` defaults to `https://heimdall.fresh8.co`
 - `docs`: Rebuild this README.md
 - `dev`: Compiles the code to ES5, and runs unit tests whilst watching for changes
 
