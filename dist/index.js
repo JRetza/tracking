@@ -4680,11 +4680,10 @@ process.umask = function() { return 0; };
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Fresh8Tracking = undefined;
 
 var _fresh8Tracking = __webpack_require__(118);
 
-exports.Fresh8Tracking = _fresh8Tracking.Fresh8Tracking;
+exports.default = _fresh8Tracking.Fresh8Tracking;
 
 /***/ }),
 /* 117 */
