@@ -8,7 +8,7 @@ const baseConfig = function () {
       path: path.resolve(__dirname, '../dist'),
       publicPath: './',
       filename: 'index.js',
-      libraryTarget: 'commonjs2',
+      libraryTarget: 'umd',
       library: 'Fresh8Tracking'
     },
     module: {
@@ -27,7 +27,7 @@ const baseConfig = function () {
             formatter: require('eslint-friendly-formatter'),
             fix: true
           }
-        },
+        }
       ]
     },
     resolve: {
@@ -55,12 +55,14 @@ minifiedConfig.output.filename = 'index.min.js';
 const browserConfig = baseConfig();
 browserConfig.entry = ['babel-polyfill', './src/browser.js'];
 browserConfig.output.filename = 'browser.js';
+delete browserConfig.output.library;
 
 const minifiedBrowserConfig = baseConfig();
 minifiedBrowserConfig.entry = ['babel-polyfill', './src/browser.js'];
 minifiedBrowserConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({comments: false, sourceMap: true}));
 minifiedBrowserConfig.plugins.push(new webpack.optimize.DedupePlugin());
 minifiedBrowserConfig.output.filename = 'browser.min.js';
+delete browserConfig.output.library;
 
 module.exports = {
   baseConfig: baseConfig(),

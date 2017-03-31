@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -4781,11 +4790,10 @@ var Fresh8Tracking = exports.Fresh8Tracking = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Fresh8Tracking = undefined;
 
 var _fresh8Tracking = __webpack_require__(118);
 
-exports.Fresh8Tracking = _fresh8Tracking.Fresh8Tracking;
+exports.default = _fresh8Tracking.Fresh8Tracking;
 
 /***/ }),
 /* 120 */
@@ -4804,7 +4812,7 @@ __webpack_require__(305);
 var _util = __webpack_require__(121);
 
 function sendRequest(data) {
-  var reqURL = "https://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
+  var reqURL = "http://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
 
   Object.keys(data).forEach(function (key) {
     if (key !== 'appID' && key !== 'vertical') {
@@ -10200,4 +10208,5 @@ module.exports = __webpack_require__(116);
 
 /***/ })
 /******/ ]);
+});
 //# sourceMappingURL=browser.js.map
