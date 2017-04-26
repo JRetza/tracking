@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const projectRoot = path.resolve(__dirname, '../');
 const baseConfig = function () {
   return {
+    entry: ['./src/index.js'],
     output: {
       path: path.resolve(__dirname, '../dist'),
       publicPath: './',
