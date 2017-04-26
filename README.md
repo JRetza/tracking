@@ -104,7 +104,7 @@ Fresh8Tracking class holds 1 function which validates and sends data
 ### fresh8Tracking.emitEvent(data, callback) ⇒
 runs data through validation and and returns then runs sendRequest in a callback to send the data
 
-**Kind**: instance method of <code>[Fresh8Tracking](#Fresh8Tracking)</code>  
+**Kind**: instance method of [<code>Fresh8Tracking</code>](#Fresh8Tracking)  
 **Returns**: returns the callback containing an error if data does
 not validate or sendRequest if everything does validate  
 
