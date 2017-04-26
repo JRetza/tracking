@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const projectRoot = path.resolve(__dirname, '../');
 const baseConfig = function () {
   return {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['./src/index.js'],
     output: {
       path: path.resolve(__dirname, '../dist'),
       publicPath: './',
