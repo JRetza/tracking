@@ -15,7 +15,9 @@ export function validateFields (data) {
     'betTotal',
     'eventType',
     'timestamp',
-    'walletAmount'
+    'walletAmount',
+    'eventDescription',
+    'viewID'
   ];
 
   let requiredFields = [

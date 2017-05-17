@@ -1378,7 +1378,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.validateFields = validateFields;
 exports.validateBets = validateBets;
 function validateFields(data) {
-  var validFields = ['appID', 'vertical', 'conversionID', 'customerID', 'bets', 'betTotal', 'eventType', 'timestamp', 'walletAmount'];
+  var validFields = ['appID', 'vertical', 'conversionID', 'customerID', 'bets', 'betTotal', 'eventType', 'timestamp', 'walletAmount', 'eventDescription', 'viewID'];
 
   var requiredFields = ['appID', 'vertical'];
 
