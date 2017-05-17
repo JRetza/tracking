@@ -12,7 +12,14 @@ describe('src/validation.js', () => {
       };
       expect(validateBets(data)).to.equal(true);
     });
-    it('Should return true when bets are formatted right', () => {
+    it('Should return true when eventType is Login', () => {
+      let data = {
+        'appID': 1,
+        'eventType': 'Login'
+      };
+      expect(validateBets(data)).to.equal(true);
+    });
+    it('Should return an error when bets is not defined', () => {
       let data = {
         'appID': 1
       };
