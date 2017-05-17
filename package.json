@@ -3,7 +3,9 @@
   "version": "1.0.3",
   "description": "A pixel tracking package for Fresh8",
   "main": "dist/index.js",
-  "engine": "node 6.10.0",
+  "engines": {
+    "node": "6.9.1"
+  },
   "scripts": {
     "test": "NODE_ENV=test karma start test/unit/karma.conf.js --single-run",
     "build": "rimraf dist && npm run docs && node ./build/build",
