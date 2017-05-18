@@ -1,4 +1,4 @@
-import { Fresh8Tracking } from 'src/index';
+import Fresh8Tracking from 'src/index';
 import * as validation from 'src/validation';
 import * as requests from 'src/requests';
 
@@ -28,7 +28,7 @@ describe('src/index.js', () => {
       data = {
         'appID': 1,
         'bets': [
-          '131313_12345 6',
+          '131313_123456',
           '121212_234567'
         ],
         'vertical': true
@@ -40,22 +40,22 @@ describe('src/index.js', () => {
 
     it('Should error if data is null', () => {
       data = null;
-      var error = new Error();
+      const error = new Error('Invalid parameter passed, `data` must be an object');
       fresh8Tracking.emitEvent(data, callback);
-      assert(callback.should.have.been.calledOnce);
-      assert(callback.should.have.been.calledWith(error));
+      expect(callback.should.have.been.calledOnce);
+      expect(callback.args[0][0]).to.deep.equal(error);
     });
 
     it('Should error if data is an array', () => {
       data = 'test';
-      var error = new Error();
+      const error = new Error('Invalid parameter passed, `data` must be an object');
       fresh8Tracking.emitEvent(data, callback);
-      assert(callback.should.have.been.calledOnce);
-      assert(callback.should.have.been.calledWith(error));
+      expect(callback.should.have.been.calledOnce);
+      expect(callback.args[0][0]).to.deep.equal(error);
     });
 
     it('Should error if data fields do not validate', () => {
-      var error = new Error('data did not validate');
+      const error = new Error('data did not validate');
       validateFieldsStub.returns(error);
       data = {
         'appID': 1,
@@ -70,7 +70,7 @@ describe('src/index.js', () => {
     });
 
     it('Should error if bets do not validate', () => {
-      var error = new Error('bets did not validate');
+      const error = new Error('bets did not validate');
       validateBetsStub.returns(error);
       data = {
         'appID': 1,

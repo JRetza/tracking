@@ -1378,7 +1378,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.validateFields = validateFields;
 exports.validateBets = validateBets;
 function validateFields(data) {
-  var validFields = ['appID', 'vertical', 'conversionID', 'customerID', 'bets', 'betTotal', 'eventType', 'timestamp', 'walletAmount'];
+  var validFields = ['appID', 'vertical', 'conversionID', 'customerID', 'bets', 'betTotal', 'eventType', 'timestamp', 'walletAmount', 'eventDescription', 'viewID'];
 
   var requiredFields = ['appID', 'vertical'];
 
@@ -1398,23 +1398,26 @@ function validateFields(data) {
   return true;
 }
 function validateBets(data) {
-  if (data.bets) {
-    if (!(data.bets instanceof Array)) {
-      return new Error('Expected data.bets to be an Array, instead found ' + _typeof(data.bets));
-    }
-
-    for (var i = 0; i < data.bets.length; i++) {
-      var exploded = data.bets[i].split('_');
-      if (exploded.length !== 2) {
-        return new Error('Invalid bet data supplied to bets, expected [betid]_[optionid], found ' + data.bets[i]);
-      }
-    }
-
-    data.bets = data.bets.join(',');
+  if (data.eventType === 'Login') {
     return true;
-  } else {
+  }
+
+  if (!data.bets) {
     return new Error('Data does not contain bets');
   }
+
+  if (!(data.bets instanceof Array)) {
+    return new Error('Expected data.bets to be an Array, instead found ' + _typeof(data.bets));
+  }
+
+  for (var i = 0; i < data.bets.length; i++) {
+    var exploded = data.bets[i].split('_');
+    if (exploded.length !== 2) {
+      return new Error('Invalid bet data supplied to bets, expected [betid]_[optionid], found ' + data.bets[i]);
+    }
+  }
+  data.bets = data.bets.join(',');
+  return true;
 }
 
 /***/ }),
@@ -1591,6 +1594,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');

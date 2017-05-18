@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
 
 // This is a karma config file. For more details see
 //   http://karma-runner.github.io/0.13/config/configuration-file.html
@@ -19,25 +19,25 @@ const webpackConfig = merge(baseConfig, {
   devtool: '#inline-source-map',
   performance: {hints: false},
   plugins: [new webpack.DefinePlugin({'API_VERSION': JSON.stringify(require(path.join(__dirname, '../../package.json')).version)})]
-})
+});
 
 // No need for app entry during tests
-delete webpackConfig.entry
+delete webpackConfig.entry;
 
-webpackConfig.module.rules = webpackConfig.module.rules || []
+webpackConfig.module.rules = webpackConfig.module.rules || [];
 webpackConfig.module.rules.unshift({
   test: /\.js$/,
   loader: 'babel-loader',
   include: projectRoot,
   exclude: /test\/unit|node_modules/
-})
+});
 
-webpackConfig.module.rules.some((loader) => {
+webpackConfig.module.rules.some(function (loader) {
   if (loader.loader === 'babel-loader') {
     loader.include = /test\/unit/;
     return true;
   }
-})
+});
 
 var reporters = [process.env.KARMA_REPORTER || 'spec', 'coverage'];
 module.exports = function (config) {
@@ -52,7 +52,7 @@ module.exports = function (config) {
     files: ['./specs/**/*.spec.js', '../../src/**/!(browser).js'],
     preprocessors: {
       './specs/**/*.spec.js': ['webpack', 'sourcemap'],
-      '../../src/**/*.js': ['webpack', 'sourcemap'],
+      '../../src/**/*.js': ['webpack', 'sourcemap']
     },
     webpack: webpackConfig,
     webpackMiddleware: {noInfo: true},
@@ -85,5 +85,5 @@ module.exports = function (config) {
         }
       }
     }
-  })
-}
+  });
+};
