@@ -17,7 +17,7 @@ export class Fresh8Tracking {
       };
     }
 
-    if (data == null) {
+    if (data === null) {
       return callback(new Error('Invalid parameter passed, `data` must be an object'));
     }
 
