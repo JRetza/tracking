@@ -37,6 +37,16 @@ describe('src/index.js', () => {
       assert(callback.should.have.been.calledOnce);
       sendRequestStub.should.have.been.calledWith(data);
     });
+    it('Should call sendRequest if eventType is Betslip - Login', () => {
+      data = {
+        'appID': 1,
+        'eventType': 'Betslip - Login',
+        'vertical': true
+      };
+      fresh8Tracking.emitEvent(data, callback);
+      assert(callback.should.have.been.calledOnce);
+      sendRequestStub.should.have.been.calledWith(data);
+    });
 
     it('Should error if data is null', () => {
       data = null;

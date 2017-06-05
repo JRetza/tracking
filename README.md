@@ -92,6 +92,9 @@ returns an error if validation doesn&#39;t pass, else returns true</p>
 <dd><p>validates the bets property of the attribute to be an array and be formatted correctly
 returns an error if validation doesn&#39;t pass, else returns true</p>
 </dd>
+<dt><a href="#shouldContainBets">shouldContainBets(data)</a> ⇒ <code>boolean</code></dt>
+<dd><p>checks to see if the data should contain bets or not</p>
+</dd>
 </dl>
 
 <a name="Fresh8Tracking"></a>
@@ -160,6 +163,17 @@ returns an error if validation doesn't pass, else returns true
 
 **Kind**: global function  
 **Returns**: <code>Error</code> \| <code>boolean</code> - returns an Error if bets do not validate and true if they do  
+
+| Param |
+| --- |
+| data | 
+
+<a name="shouldContainBets"></a>
+
+## shouldContainBets(data) ⇒ <code>boolean</code>
+checks to see if the data should contain bets or not
+
+**Kind**: global function  
 
 | Param |
 | --- |

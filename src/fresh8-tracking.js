@@ -1,4 +1,4 @@
-import { validateFields, validateBets } from './validation';
+import { validateFields, validateBets, shouldContainBets } from './validation';
 import { sendRequest } from './requests';
 /**
  * Fresh8Tracking class holds 1 function which validates and sends data
@@ -31,9 +31,11 @@ export class Fresh8Tracking {
       return callback(err);
     }
 
-    err = validateBets(data);
-    if (err instanceof Error) {
-      return callback(err);
+    if (shouldContainBets(data)) {
+      err = validateBets(data);
+      if (err instanceof Error) {
+        return callback(err);
+      }
     }
 
     return callback(sendRequest(data));

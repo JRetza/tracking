@@ -47,10 +47,6 @@ export function validateFields (data) {
  * @returns {Error|boolean} returns an Error if bets do not validate and true if they do
  */
 export function validateBets (data) {
-  // End validation if eventType is Login
-  if (data.eventType === 'Login') {
-    return true;
-  }
   // Throw error if no bets passed.
   if (!data.bets) {
     return new Error('Data does not contain bets');
@@ -67,5 +63,18 @@ export function validateBets (data) {
     }
   }
   data.bets = data.bets.join(',');
+  return true;
+}
+
+/**
+ * checks to see if the data should contain bets or not
+ * @param data
+ * @returns {boolean}
+ */
+export function shouldContainBets (data) {
+  // End validation if eventType is Login
+  if (data.eventType === 'Betslip - Login') {
+    return false;
+  }
   return true;
 }

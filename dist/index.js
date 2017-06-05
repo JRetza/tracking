@@ -1302,9 +1302,11 @@ var Fresh8Tracking = exports.Fresh8Tracking = function () {
         return callback(err);
       }
 
-      err = (0, _validation.validateBets)(data);
-      if (err instanceof Error) {
-        return callback(err);
+      if ((0, _validation.shouldContainBets)(data)) {
+        err = (0, _validation.validateBets)(data);
+        if (err instanceof Error) {
+          return callback(err);
+        }
       }
 
       return callback((0, _requests.sendRequest)(data));
@@ -1377,6 +1379,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.validateFields = validateFields;
 exports.validateBets = validateBets;
+exports.shouldContainBets = shouldContainBets;
 function validateFields(data) {
   var validFields = ['appID', 'vertical', 'conversionID', 'customerID', 'bets', 'betTotal', 'eventType', 'timestamp', 'walletAmount', 'eventDescription', 'viewID'];
 
@@ -1398,10 +1401,6 @@ function validateFields(data) {
   return true;
 }
 function validateBets(data) {
-  if (data.eventType === 'Login') {
-    return true;
-  }
-
   if (!data.bets) {
     return new Error('Data does not contain bets');
   }
@@ -1417,6 +1416,13 @@ function validateBets(data) {
     }
   }
   data.bets = data.bets.join(',');
+  return true;
+}
+
+function shouldContainBets(data) {
+  if (data.eventType === 'Betslip - Login') {
+    return false;
+  }
   return true;
 }
 
