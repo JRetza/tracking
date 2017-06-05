@@ -1,4 +1,5 @@
 # F8 Tracking
+[ ![Codeship Status for ConnectedVentures/tracking.js](https://app.codeship.com/projects/de1ca920-16df-0135-d824-1690a82d9f8e/status?branch=master)](https://app.codeship.com/projects/218359)
 
 ## Getting Started
 
@@ -104,7 +105,7 @@ Fresh8Tracking class holds 1 function which validates and sends data
 ### fresh8Tracking.emitEvent(data, callback) ⇒
 runs data through validation and and returns then runs sendRequest in a callback to send the data
 
-**Kind**: instance method of <code>[Fresh8Tracking](#Fresh8Tracking)</code>  
+**Kind**: instance method of [<code>Fresh8Tracking</code>](#Fresh8Tracking)  
 **Returns**: returns the callback containing an error if data does
 not validate or sendRequest if everything does validate  
 
@@ -115,7 +116,7 @@ not validate or sendRequest if everything does validate
 
 <a name="sendRequest"></a>
 
-## sendRequest(data) ⇒ <code>\*</code> &#124; <code>Promise.&lt;TResult&gt;</code>
+## sendRequest(data) ⇒ <code>\*</code> \| <code>Promise.&lt;TResult&gt;</code>
 makes the request to the server using fetch
 
 **Kind**: global function  
@@ -126,12 +127,12 @@ makes the request to the server using fetch
 
 <a name="checkStatusCode"></a>
 
-## checkStatusCode(response) ⇒ <code>Promise.reject</code> &#124; <code>Object</code>
+## checkStatusCode(response) ⇒ <code>Promise.reject</code> \| <code>Object</code>
 Checks the stats code on a response and rejects the promise chain if
 less than 200 or greater than 300.
 
 **Kind**: global function  
-**Returns**: <code>Promise.reject</code> &#124; <code>Object</code> - a rejected promise or the reponse object  
+**Returns**: <code>Promise.reject</code> \| <code>Object</code> - a rejected promise or the reponse object  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -139,13 +140,13 @@ less than 200 or greater than 300.
 
 <a name="validateFields"></a>
 
-## validateFields(data) ⇒ <code>Error</code> &#124; <code>boolean</code>
+## validateFields(data) ⇒ <code>Error</code> \| <code>boolean</code>
 validates data fields to only be the fields in the validFields array
 validates data fields to have to include the fields in requiredFields array
 returns an error if validation doesn't pass, else returns true
 
 **Kind**: global function  
-**Returns**: <code>Error</code> &#124; <code>boolean</code> - returns an Error if fields do not validate and true if they do  
+**Returns**: <code>Error</code> \| <code>boolean</code> - returns an Error if fields do not validate and true if they do  
 
 | Param |
 | --- |
@@ -153,12 +154,12 @@ returns an error if validation doesn't pass, else returns true
 
 <a name="validateBets"></a>
 
-## validateBets(data) ⇒ <code>Error</code> &#124; <code>boolean</code>
+## validateBets(data) ⇒ <code>Error</code> \| <code>boolean</code>
 validates the bets property of the attribute to be an array and be formatted correctly
 returns an error if validation doesn't pass, else returns true
 
 **Kind**: global function  
-**Returns**: <code>Error</code> &#124; <code>boolean</code> - returns an Error if bets do not validate and true if they do  
+**Returns**: <code>Error</code> \| <code>boolean</code> - returns an Error if bets do not validate and true if they do  
 
 | Param |
 | --- |
