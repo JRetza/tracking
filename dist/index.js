@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
+/******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/ 		}
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, global) {var require;/*!
+/* WEBPACK VAR INJECTION */(function(process, Promise, global) {var require;/*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
  * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
  * @license   Licensed under MIT license
@@ -1239,7 +1239,7 @@ return Promise;
 })));
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(0), __webpack_require__(7)))
 
 /***/ }),
 /* 1 */
@@ -1288,7 +1288,7 @@ var Fresh8Tracking = exports.Fresh8Tracking = function () {
         callback = function callback() {};
       }
 
-      if (data == null) {
+      if (data === null) {
         return callback(new Error('Invalid parameter passed, `data` must be an object'));
       }
 
@@ -1331,7 +1331,7 @@ __webpack_require__(8);
 var _util = __webpack_require__(4);
 
 function sendRequest(data) {
-  var reqURL = "https://heimdall.fresh8.co" + '/track\n?appID=' + encodeURIComponent(data.appID) + '\n  &vertical=' + encodeURIComponent(data.vertical) + '\n  &timestamp=' + new Date().getTime();
+  var reqURL = "https://heimdall.fresh8.co" + '/track?appID=' + encodeURIComponent(data.appID) + '&vertical=' + encodeURIComponent(data.vertical) + '&timestamp=' + new Date().getTime();
 
   Object.keys(data).forEach(function (key) {
     if (key !== 'appID' && key !== 'vertical') {
@@ -1594,10 +1594,6 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
