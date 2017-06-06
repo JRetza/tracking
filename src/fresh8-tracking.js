@@ -4,6 +4,9 @@ import { sendRequest } from './requests';
  * Fresh8Tracking class holds 1 function which validates and sends data
  */
 export class Fresh8Tracking {
+  constructor (url = buildURL) {
+    this.url = url;
+  }
   /**
    * runs data through validation and and returns then runs sendRequest in a callback to send the data
    * @param data data to be validated and sent
@@ -37,7 +40,6 @@ export class Fresh8Tracking {
         return callback(err);
       }
     }
-
-    return callback(sendRequest(data));
+    return callback(sendRequest(data, this.url));
   }
 }

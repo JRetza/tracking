@@ -5,8 +5,8 @@ import { checkStatusCode } from './util';
  * @param data to be sent
  * @returns {*|Promise.<TResult>}
  */
-export function sendRequest (data) {
-  let reqURL = `${URL}/track?appID=${encodeURIComponent(data.appID)}&vertical=${encodeURIComponent(data.vertical)}&timestamp=${new Date().getTime()}`;
+export function sendRequest (data, url) {
+  let reqURL = `${url}/track?appID=${encodeURIComponent(data.appID)}&vertical=${encodeURIComponent(data.vertical)}&timestamp=${new Date().getTime()}`;
 
   // Only apply values set in keys
   Object.keys(data).forEach(function (key) {

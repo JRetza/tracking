@@ -4558,7 +4558,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Fresh8Tracking = exports.Fresh8Tracking = function () {
   function Fresh8Tracking() {
+    var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "https://heimdall.fresh8.co";
+
     _classCallCheck(this, Fresh8Tracking);
+
+    this.url = url;
   }
 
   _createClass(Fresh8Tracking, [{
@@ -4588,8 +4592,7 @@ var Fresh8Tracking = exports.Fresh8Tracking = function () {
           return callback(err);
         }
       }
-
-      return callback((0, _requests.sendRequest)(data));
+      return callback((0, _requests.sendRequest)(data, this.url));
     }
   }]);
 
@@ -4627,8 +4630,8 @@ __webpack_require__(305);
 
 var _util = __webpack_require__(120);
 
-function sendRequest(data) {
-  var reqURL = "https://heimdall.fresh8.co" + '/track?appID=' + encodeURIComponent(data.appID) + '&vertical=' + encodeURIComponent(data.vertical) + '&timestamp=' + new Date().getTime();
+function sendRequest(data, url) {
+  var reqURL = url + '/track?appID=' + encodeURIComponent(data.appID) + '&vertical=' + encodeURIComponent(data.vertical) + '&timestamp=' + new Date().getTime();
 
   Object.keys(data).forEach(function (key) {
     if (key !== 'appID' && key !== 'vertical') {
