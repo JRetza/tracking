@@ -18,7 +18,7 @@ const webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
   devtool: '#inline-source-map',
   performance: {hints: false},
-  plugins: [new webpack.DefinePlugin({'API_VERSION': JSON.stringify(require(path.join(__dirname, '../../package.json')).version)})]
+  plugins: [new webpack.DefinePlugin({'API_VERSION': JSON.stringify(require(path.join(__dirname, '../../package.json')).api_version)})]
 });
 
 // No need for app entry during tests

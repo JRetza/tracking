@@ -109,3 +109,40 @@ describe('src/index.js', () => {
     });
   });
 });
+describe('src/index.js, constructor url', () => {
+  let callback;
+  let fresh8Tracking = new Fresh8Tracking('www.staging.com');
+  let validateFieldsStub;
+  let validateBetsStub;
+  let sendRequestStub;
+  let data;
+
+  beforeEach(() => {
+    callback = sinon.spy();
+    validateFieldsStub = sinon.stub(validation, 'validateFields');
+    validateBetsStub = sinon.stub(validation, 'validateBets');
+    sendRequestStub = sinon.stub(requests, 'sendRequest');
+  });
+
+  afterEach(() => {
+    validateFieldsStub.restore();
+    validateBetsStub.restore();
+    sendRequestStub.restore();
+  });
+
+  describe('emitEvent', () => {
+    it('Should call sendRequest with new url', () => {
+      data = {
+        'appID': 1,
+        'bets': [
+          '131313_123456',
+          '121212_234567'
+        ],
+        'vertical': true
+      };
+      fresh8Tracking.emitEvent(data, callback);
+      assert(callback.should.have.been.calledOnce);
+      sendRequestStub.should.have.been.calledWithExactly(data, 'www.staging.com');
+    });
+  });
+});
