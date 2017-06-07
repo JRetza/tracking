@@ -15,7 +15,9 @@ export function validateFields (data) {
     'betTotal',
     'eventType',
     'timestamp',
-    'walletAmount'
+    'walletAmount',
+    'eventDescription',
+    'viewID'
   ];
 
   let requiredFields = [
@@ -45,22 +47,34 @@ export function validateFields (data) {
  * @returns {Error|boolean} returns an Error if bets do not validate and true if they do
  */
 export function validateBets (data) {
-  // Validate bet array and stringify
-  if (data.bets) {
-    if (!(data.bets instanceof Array)) {
-      return new Error('Expected data.bets to be an Array, instead found ' + (typeof data.bets));
-    }
-
-    for (let i = 0; i < data.bets.length; i++) {
-      let exploded = data.bets[i].split('_');
-      if (exploded.length !== 2 && exploded.length !== 3) {
-        return new Error('Invalid bet data supplied to bets, expected [operator]_[marketid] or [operator]_[marketid]_[selectionid], found ' + data.bets[i]);
-      }
-    }
-
-    data.bets = data.bets.join(',');
-    return true;
-  } else {
+  // Throw error if no bets passed.
+  if (!data.bets) {
     return new Error('Data does not contain bets');
   }
+  // Throw error if data.bets is not an array
+  if (!(data.bets instanceof Array)) {
+    return new Error('Expected data.bets to be an Array, instead found ' + (typeof data.bets));
+  }
+  // Validate bet array and stringify
+  for (let i = 0; i < data.bets.length; i++) {
+    let exploded = data.bets[i].split('_');
+    if (exploded.length !== 2 && exploded.length !== 3) {
+      return new Error('Invalid bet data supplied to bets, expected [operator]_[marketid] or [operator]_[marketid]_[selectionid], found ' + data.bets[i]);
+    }
+  }
+  data.bets = data.bets.join(',');
+  return true;
+}
+
+/**
+ * checks to see if the data should contain bets or not
+ * @param data
+ * @returns {boolean}
+ */
+export function shouldContainBets (data) {
+  // End validation if eventType is Login
+  if (data.eventType === 'Betslip - Login') {
+    return false;
+  }
+  return true;
 }

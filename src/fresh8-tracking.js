@@ -1,9 +1,12 @@
-import { validateFields, validateBets } from './validation';
+import { validateFields, validateBets, shouldContainBets } from './validation';
 import { sendRequest } from './requests';
 /**
  * Fresh8Tracking class holds 1 function which validates and sends data
  */
 export class Fresh8Tracking {
+  constructor (url = buildURL) {
+    this.url = url;
+  }
   /**
    * runs data through validation and and returns then runs sendRequest in a callback to send the data
    * @param data data to be validated and sent
@@ -17,7 +20,7 @@ export class Fresh8Tracking {
       };
     }
 
-    if (data == null) {
+    if (data === null) {
       return callback(new Error('Invalid parameter passed, `data` must be an object'));
     }
 
@@ -31,11 +34,12 @@ export class Fresh8Tracking {
       return callback(err);
     }
 
-    err = validateBets(data);
-    if (err instanceof Error) {
-      return callback(err);
+    if (shouldContainBets(data)) {
+      err = validateBets(data);
+      if (err instanceof Error) {
+        return callback(err);
+      }
     }
-
-    return callback(sendRequest(data));
+    return callback(sendRequest(data, this.url));
   }
 }

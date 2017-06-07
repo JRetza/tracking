@@ -1,4 +1,5 @@
-{ "parser": "babel-eslint",
+{
+  "parser": "babel-eslint",
   "extends": "standard",
   "env": {
     "es6": true,
@@ -9,6 +10,12 @@
     "modules": true
   },
   "rules": {
-    "semi": [2, "always"]
+    "semi": [
+      2,
+      "always"
+    ]
+  },
+  "globals": {
+    "buildURL": true
   }
 }

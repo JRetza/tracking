@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const projectRoot = path.resolve(__dirname, '../');
 const baseConfig = function () {
   return {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['./src/index.js'],
     output: {
       path: path.resolve(__dirname, '../dist'),
       publicPath: './',
@@ -36,7 +36,7 @@ const baseConfig = function () {
     },
     plugins: [
       new webpack.DefinePlugin({
-        URL: JSON.stringify(process.argv.slice(2)[0]) || JSON.stringify('https://heimdall.fresh8.co')
+        buildURL: JSON.stringify(process.argv.slice(2)[0]) || JSON.stringify('https://heimdall.fresh8.co')
       }),
       new webpack.ProvidePlugin({
         Promise: 'es6-promise'

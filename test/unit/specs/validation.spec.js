@@ -1,4 +1,4 @@
-import { validateBets, validateFields } from 'src/validation';
+import { validateBets, validateFields, shouldContainBets } from 'src/validation';
 
 describe('src/validation.js', () => {
   describe('validateBets', () => {
@@ -12,7 +12,8 @@ describe('src/validation.js', () => {
       };
       expect(validateBets(data)).to.equal(true);
     });
-    it('Should return true when bets are formatted right', () => {
+
+    it('Should return an error when bets is not defined', () => {
       let data = {
         'appID': 1
       };
@@ -61,6 +62,25 @@ describe('src/validation.js', () => {
     it('Should return an error when not given an object', () => {
       let data = [];
       expect(validateFields(data)).to.be.an('error');
+    });
+  });
+  describe('shouldContainBets', () => {
+    it('Should return false when eventType is Betslip - Login', () => {
+      let data = {
+        'eventType': 'Betslip - Login'
+      };
+      expect(shouldContainBets(data)).to.equal(false);
+    });
+    it('Should return true when eventType does not contain or include Login', () => {
+      let data = {
+        'eventType': 'Test'
+      };
+      expect(shouldContainBets(data)).to.equal(true);
+    });
+    it('Should return true when eventType isn\'t present', () => {
+      let data = {
+      };
+      expect(shouldContainBets(data)).to.equal(true);
     });
   });
 });
