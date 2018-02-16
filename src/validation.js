@@ -58,8 +58,8 @@ export function validateBets (data) {
   // Validate bet array and stringify
   for (let i = 0; i < data.bets.length; i++) {
     let exploded = data.bets[i].split('_');
-    if (exploded.length !== 2) {
-      return new Error('Invalid bet data supplied to bets, expected [betid]_[optionid], found ' + data.bets[i]);
+    if (exploded.length !== 2 && exploded.length !== 3) {
+      return new Error('Invalid bet data supplied to bets, expected [operator]_[marketid] or [operator]_[marketid]_[selectionid], found ' + data.bets[i]);
     }
   }
   data.bets = data.bets.join(',');
