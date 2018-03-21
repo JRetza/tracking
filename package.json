@@ -1,5 +1,5 @@
 {
-  "name": "fresh8-tracking",
+  "name": "@fresh8/tracking",
   "api_version": "1.0.0",
   "version": "1.0.0",
   "description": "A pixel tracking package for Fresh8",
