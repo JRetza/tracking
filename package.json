@@ -1,7 +1,7 @@
 {
   "name": "fresh8-tracking",
   "api_version": "1.0.0",
-  "version": "1.0.0",
+  "version": "1.0.1-0",
   "description": "A pixel tracking package for Fresh8",
   "main": "dist/index.js",
   "engines": {
