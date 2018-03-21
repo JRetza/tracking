@@ -13,7 +13,9 @@
     "dev": "node ./build/watch & karma start test/unit/karma.conf.js",
     "cov": "open ./test/unit/coverage/lcov-report/index.html",
     "docs": "jsdoc2md -t doc-build/README.hbs --files ./src/*.js > README.md",
-    "reshrinkwrap": "rimraf node_modules/ npm-shrinkwrap.json && npm i --no-optional && npm prune && npm shrinkwrap --dev && npm run build"
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags",
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
